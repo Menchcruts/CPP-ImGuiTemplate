@@ -5,28 +5,43 @@ project "MainProject"
     cdialect "C17"
     staticruntime "off"
 
+    targetdir ("../bin/" .. OutputDir .. "/%{prj.name}")
+    objdir ("../bin/Intermediates/" .. OutputDir .. "/%{prj.name}")
+    
     files { "./**.h", "./**.cpp" }
 
     includedirs
     {
-        "../Core/CoreProjectExample/"
+        -- Core libraries
+        "../Core/CoreProjectExample/",
+        
+        -- Dependencies
+        "../Dependencies/GLFW/GLFW/include/",
+        "../Dependencies/GLEW/GLEW/include/",
+        "../Dependencies/ImGui/ImGui/",
+        "../Dependencies/miniaudio/miniaudio/",
+        "../Dependencies/stb_image/"
     }
 
     links
     {
-        "CoreProject"
+        -- Core libraries
+        "CoreProject",
+
+        -- Dependencies
+        "GLFW",
+        "GLEW",
+        "ImGui",
+        "opengl32",
+        "miniaudio"
     }
 
     defines
     {
-        
+        "GLEW_STATIC"
     }
 
-    targetdir ("../bin/" .. OutputDir .. "/%{prj.name}")
-    objdir ("../bin/Intermediates/" .. OutputDir .. "/%{prj.name}")
-
     filter "system:windows"
-        systemversion "latest"
         defines { "WINDOWS" }
 
     filter "system:linux"
@@ -43,7 +58,5 @@ project "MainProject"
         optimize "On"
         symbols "Off"
 
-        -- Uncomment this for a windowed app
-        -- kind "WindowedApp"
-        -- entrypoint "mainCRTStartup"
-        
+        kind "WindowedApp"
+        entrypoint "mainCRTStartup"

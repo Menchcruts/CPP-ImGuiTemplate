@@ -1,27 +1,28 @@
-project "ProjectName"   -- CHANGE THIS TO THE NAME OF THE PROJECT
+project "GLEW"
     kind "StaticLib"
-    language "C++"
-    cppdialect "C++20"
+    language "C"
     cdialect "C17"
     staticruntime "off"
+    warnings "off"
     
     targetdir ("../bin/" .. OutputDir .. "/%{prj.name}")
     objdir ("../bin/Intermediates/" .. OutputDir .. "/%{prj.name}")
 
     files { 
-        "%{prj.name}/**.h", 
-        "%{prj.name}/**.cpp" 
+        "%{prj.name}/src/glew.c",
+		"%{prj.name}/src/glewinfo.c",
+		"%{prj.name}/src/visualinfo.c"
     }
 
     includedirs {
-        
+        "%{prj.name}/include"
     }
 
     filter "system:windows"
-        defines { "WINDOWS" }
-
-    filter "system:linux"
-        defines { "LINUX" }
+        systemversion "latest"
+        defines {
+            "_CRT_SECURE_NO_WARNINGS"
+        }
 
     filter "configurations:Debug"
         defines { "DEBUG" }

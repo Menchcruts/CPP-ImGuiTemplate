@@ -17,7 +17,10 @@ group "Core"
 	include "Core/CoreProjectExample/"
 
 group "Dependencies"
-    
+   include "Dependencies/GLFW/"
+   include "Dependencies/GLEW/"
+   include "Dependencies/ImGui/"
+   include "Dependencies/miniaudio/"
 
 group ""
     include "MainProject/"

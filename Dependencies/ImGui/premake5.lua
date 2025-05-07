@@ -1,4 +1,4 @@
-project "ProjectName"   -- CHANGE THIS TO THE NAME OF THE PROJECT
+project "ImGui"
     kind "StaticLib"
     language "C++"
     cppdialect "C++20"
@@ -9,12 +9,26 @@ project "ProjectName"   -- CHANGE THIS TO THE NAME OF THE PROJECT
     objdir ("../bin/Intermediates/" .. OutputDir .. "/%{prj.name}")
 
     files { 
-        "%{prj.name}/**.h", 
-        "%{prj.name}/**.cpp" 
+        "%{prj.name}/*.h", 
+        "%{prj.name}/*.cpp",
+        "%{prj.name}/backends/*glfw*.h",
+        "%{prj.name}/backends/*glfw*.cpp",
+        "%{prj.name}/backends/*opengl*.h",
+        "%{prj.name}/backends/*opengl*.cpp"
+
+        -- "%{prj.name}/misc/**.h",
+        -- "%{prj.name}/misc/**.cpp"
     }
 
     includedirs {
-        
+        "./%{prj.name}/",
+        "./%{prj.name}/backends/",
+        "../GLFW/GLFW/include/"
+    }
+
+    links {
+        "GLFW",
+        "opengl32"
     }
 
     filter "system:windows"

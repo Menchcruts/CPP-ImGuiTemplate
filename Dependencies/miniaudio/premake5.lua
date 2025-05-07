@@ -1,16 +1,16 @@
-project "ProjectName"   -- CHANGE THIS TO THE NAME OF THE PROJECT
+project "miniaudio"
     kind "StaticLib"
-    language "C++"
-    cppdialect "C++20"
+    language "C"
     cdialect "C17"
     staticruntime "off"
+    warnings "off"
     
     targetdir ("../bin/" .. OutputDir .. "/%{prj.name}")
     objdir ("../bin/Intermediates/" .. OutputDir .. "/%{prj.name}")
 
     files { 
-        "%{prj.name}/**.h", 
-        "%{prj.name}/**.cpp" 
+        "%{prj.name}/miniaudio.h", 
+        "%{prj.name}/miniaudio.c" 
     }
 
     includedirs {
@@ -18,10 +18,8 @@ project "ProjectName"   -- CHANGE THIS TO THE NAME OF THE PROJECT
     }
 
     filter "system:windows"
-        defines { "WINDOWS" }
-
-    filter "system:linux"
-        defines { "LINUX" }
+        systemversion "latest"
+        defines { }
 
     filter "configurations:Debug"
         defines { "DEBUG" }
