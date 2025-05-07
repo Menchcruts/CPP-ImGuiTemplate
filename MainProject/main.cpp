@@ -1,8 +1,10 @@
 #include <iostream>
 #include "CoreProject/func.h"
+#include "App.h"
 
 int main() {
-    std::cout << "Hello World!\n";
     func();
-    std::cin.get();
+
+    App app;
+    app.Run();
 }

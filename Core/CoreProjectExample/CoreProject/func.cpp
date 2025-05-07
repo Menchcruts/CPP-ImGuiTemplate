@@ -1,5 +1,5 @@
 #include <iostream>
 
 void func() {
-    std::cout << "Function\n";
+    std::cout << "This is a function in a core library!\n";
 }
